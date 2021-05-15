@@ -75,13 +75,13 @@ node {
 
 def getBranchInfo() {
     def branchInfo = [:]
-    branchData = ${env.BRANCH_NAME}.split('/')
+    branchData =  BRANCH_NAME.split('/')
     if (branchData.size() == 2) {
         branchInfo['type'] = branchData[0]
         branchInfo['version'] = branchData[1]
     } else {
-        branchInfo['type'] = ${env.BRANCH_NAME}
-        branchInfo['version'] = ${env.BRANCH_NAME}
+        branchInfo['type'] =  BRANCH_NAME
+        branchInfo['version'] = BRANCH_NAME
     }
     return branchInfo
 }
