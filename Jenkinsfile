@@ -11,7 +11,7 @@ node {
         	checkout scm
         }
         stage ('Install') {
-        	sh "sudo composer install -n"
+        	sh "composer install "
         }
         stage ('Tests') {
             sh "echo 'shell scripts to create DB and settings for integration tests'"
