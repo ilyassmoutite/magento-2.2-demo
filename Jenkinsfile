@@ -33,8 +33,8 @@ node {
         }
         if (branchInfo.type == 'develop') {
       	    stage ('Deploy DEV') {
-      	         sh "scp -P 22 ${artifactFilename} ${DEV_SERVER}:downloads"
-                 sh "ssh -p 22 ${DEV_SERVER} 'VERSION=${branchInfo.version} ./deploy.sh'"
+      	         sh "scp -P 22 -o StrictHostKeyChecking=No ${artifactFilename} ${DEV_SERVER}:downloads"
+                 sh "ssh -p 22 -o StrictHostKeyChecking=No ${DEV_SERVER} 'VERSION=${branchInfo.version} ./deploy.sh'"
       	    }
       	}
       	if (branchInfo.type == 'release' || branchInfo.type == 'hotfix') {
