@@ -1,5 +1,5 @@
 node {
-    DEV_SERVER="ilyass@192.168.1.112"
+    DEV_SERVER="ilyass@192.168.1.118"
     STAGE_SERVER="<user>@<host>"
     PROD_SERVER="<user>@<host>"
 
@@ -11,7 +11,7 @@ node {
         	checkout scm
         }
         stage ('Install') {
-        	sh "composer install "
+        	sh "composer install"
         }
         stage ('Tests') {
             sh "echo 'shell scripts to create DB and settings for integration tests'"
@@ -28,6 +28,7 @@ node {
         branchInfo = getBranchInfo()
         stage ('Artifact') {
             artifactFilename = "/tmp/${branchInfo.version}.tar.gz"
+		sh "pwd"
             sh "ARTIFACT_FILENAME=${artifactFilename} ./build.sh"
         }
         if (branchInfo.type == 'develop') {
@@ -75,12 +76,12 @@ node {
 
 def getBranchInfo() {
     def branchInfo = [:]
-    branchData =  BRANCH_NAME.split('/')
+    branchData = BRANCH_NAME.split('/')
     if (branchData.size() == 2) {
         branchInfo['type'] = branchData[0]
         branchInfo['version'] = branchData[1]
     } else {
-        branchInfo['type'] =  BRANCH_NAME
+        branchInfo['type'] = BRANCH_NAME
         branchInfo['version'] = BRANCH_NAME
     }
     return branchInfo
