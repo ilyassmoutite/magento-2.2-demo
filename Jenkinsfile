@@ -1,5 +1,5 @@
 node {
-    DEV_SERVER="ilyass@192.168.1.118"
+    DEV_SERVER="ilyass@192.168.1.122"
     STAGE_SERVER="<user>@<host>"
     PROD_SERVER="<user>@<host>"
 
@@ -11,7 +11,7 @@ node {
         	checkout scm
         }
         stage ('Install') {
-        	sh "composer install"
+        	sh "composer install --ignore-platform-reqs"
         }
         stage ('Tests') {
             sh "echo 'shell scripts to create DB and settings for integration tests'"
