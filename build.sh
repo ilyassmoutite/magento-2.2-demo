@@ -26,7 +26,7 @@ BUILD=${WORKING_DIR}
 # GET CODE
 # git clone not needed for Jenkins
 cd ${BUILD}
-composer install --no-dev --prefer-dist --optimize-autoloader
+composer install --no-dev --prefer-dist --optimize-autoloader --ignore-platform-reqs
 
 # GENERATE FILES
 cd ${BUILD}/${MAGENTO_DIR}
