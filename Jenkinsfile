@@ -51,14 +51,14 @@ node {
                 }
                 if (confirmedServer in ['stage','both']) {
                     stage ('Deploy STAGE') {
-                        sh "scp -P 22 ${artifactFilename} ${STAGE_SERVER}:downloads"
-                        sh "ssh -p 22 ${STAGE_SERVER} 'VERSION=${branchInfo.version} ./deploy.sh'"
+                        sh "scp -P 22 -o StrictHostKeyChecking=No ${artifactFilename} ${STAGE_SERVER}:downloads"
+                        sh "ssh -p 22 -o StrictHostKeyChecking=No ${STAGE_SERVER} 'VERSION=${branchInfo.version} ./deploy.sh'"
                     }
                 }
                 if (confirmedServer in ['production','both']) {
                     stage ('Deploy PROD') {
-                        sh "scp -P 22 ${artifactFilename} ${PROD_SERVER}:downloads"
-                        sh "ssh -p 22 ${PROD_SERVER} 'VERSION=${branchInfo.version} ./deploy.sh'"
+                        sh "scp -P 22 -o StrictHostKeyChecking=No ${artifactFilename} ${PROD_SERVER}:downloads"
+                        sh "ssh -p 22 -o StrictHostKeyChecking=No ${PROD_SERVER} 'VERSION=${branchInfo.version} ./deploy.sh'"
                     }
                 }
             }
